@@ -5,7 +5,7 @@ using namespace std;
 
 int main(){
 
-   while(1){
+   while(true){
        cout << "*************SUDOKU**************" << endl;
        cout << "1 - Novo Jogo" << endl;
        cout << "2 - Crie seu proprio jogo" << endl;
@@ -23,36 +23,37 @@ int main(){
            int modo;
            cin >> modo;
            if(modo == 1) {
-             criaModoSingleplayer();
-             break
-
-           } else if (modo == 2) {
-             criaModoMultiplayer();
+             //criaModoSingleplayer();
              break;
 
-           } else
-              cout << "Opcao invalida, tente novamente"
+           } else if (modo == 2) {
+             //criaModoMultiplayer();
+             break;
+
+           } else {
+              cout << "Opcao invalida, tente novamente";
               break;
+           }
 
        }
 
        case 2:
        {
 
-           insereSudoku();
+           //insereSudoku();
            break;
        }
 
        case 3:
        {
-           mostraRankingGeral();
+           //mostraRankingGeral();
            break;
        }
 
        case 4:
        {
 
-           exit();
+           //exit();
            break;
        }
 
