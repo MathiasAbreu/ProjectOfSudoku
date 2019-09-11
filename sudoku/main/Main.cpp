@@ -1,16 +1,40 @@
 #include<iostream>
 #include<cstring>
+#include"backtracking.cpp"
+
 # define tamanho 4
 using namespace std;
+
+int Sudoku[9][9] = {{5,3,0,0,7,0,0,0,0},
+                    {6,0,0,1,9,5,0,0,0},
+                    {0,9,8,0,0,0,0,6,0},
+                    {8,0,0,0,6,0,0,0,3},
+                    {4,0,0,8,0,3,0,0,1},
+                    {7,0,0,0,2,0,0,0,6},
+                    {0,6,0,0,0,0,2,8,0},
+                    {0,0,0,4,1,9,0,0,5},
+                    {0,0,0,0,8,0,0,7,9}};
+
+int mostrarSudoku() {
+
+  function_backTracking(Sudoku,0,0);
+
+  for(int i = 0; i <= 8; i++) {
+    printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
+  }
+
+  return 0;
+}
 
 int main(){
 
    while(true){
-       cout << "*************SUDOKU**************" << endl;
+       cout << "\n*************SUDOKU**************" << endl;
        cout << "1 - Novo Jogo" << endl;
        cout << "2 - Crie seu proprio jogo" << endl;
        cout << "3 - Ranking geral" << endl;
-       cout << "4 - Sair" << endl;
+       cout << "4 - Mostrar Resultado" << endl;
+       cout << "5 - Sair" << endl;
        cout << "Escolha a opcao: " << endl;
        int op;
        cin >> op;
@@ -50,11 +74,15 @@ int main(){
            break;
        }
 
-       case 4:
-       {
+       case 4: {
+         
+         mostrarSudoku();
+         break;
+       }
 
-           //exit();
-           break;
+       case 5: {
+
+         break;
        }
 
        default:
