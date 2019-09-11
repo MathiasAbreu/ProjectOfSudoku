@@ -12,7 +12,7 @@ int verificaLinha(int Matriz[9][9], int numero, int linha, int coluna) {
 }
 
 int verificaColuna(int Matriz[9][9], int numero, int linha, int coluna) {
-    
+
     for(int indice = 0; indice <= 8; indice++) {
 
         if(Matriz[indice][coluna] == numero && indice != linha)
@@ -42,7 +42,7 @@ int verificaSetor(int Matriz[9][9], int numero, int linha, int coluna) {
         setorColuna = 6;
 
     for(int indiceLinha = (0 + setorLinha); indiceLinha <= (2 + setorLinha); indiceLinha++) {
-        
+
         for(int indiceColuna = (0 + setorColuna); indiceColuna <= (2 + setorColuna); indiceColuna++) {
 
             if(Matriz[indiceLinha][indiceColuna] == numero && (indiceLinha != linha && indiceColuna != coluna))
@@ -51,4 +51,9 @@ int verificaSetor(int Matriz[9][9], int numero, int linha, int coluna) {
     }
 
     return true;
+}
+
+int verificarTudo(int Matriz[9][9], int numero, int linha, int coluna) {
+  if (verificaLinha(Matriz, numero, linha, coluna) && verificaColuna(Matriz, numero, linha, coluna) && verificaSetor(Matriz, numero, linha, coluna)) return true;
+  else return false;
 }
