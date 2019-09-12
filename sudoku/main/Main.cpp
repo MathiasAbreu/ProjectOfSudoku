@@ -1,7 +1,6 @@
 #include<iostream>
 #include<cstring>
 #include"backtracking.cpp"
-#include"gerador.cpp"
 
 # define tamanho 4
 using namespace std;

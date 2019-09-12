@@ -60,7 +60,7 @@ int gerador(int dificuldade) {
 
       int cont = 0;
       while (cont != 9) {
-        for (int j = 0; i <= 8; i++) {
+        for (int j = 0; j <= 8; j++) {
           if (linha[j] != 0 && verificarTudo(Sudoku, linha[j] , i, cont)) {
             Sudoku[i][cont] = linha[j];
             linha[j] = 0;
