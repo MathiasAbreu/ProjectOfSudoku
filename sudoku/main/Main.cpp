@@ -47,8 +47,7 @@ int main(){
       cout <<   "| 1 - Novo Jogo      |" << endl;
       cout <<   "| 2 - Inserir Jogo   |" << endl;
       cout <<   "| 3 - Ranking geral  |" << endl;
-      cout <<   "| 4 - Resolver Jogo  |" << endl;
-      cout <<   "| 5 - Sair           |" << endl;
+      cout <<   "| 4 - Sair           |" << endl;
       cout <<   "| Escolha a opcao: " << endl;
 
       cin >> operacao;
@@ -105,11 +104,6 @@ int main(){
        }
 
        case 4: {
-
-        break;
-       }
-
-       case 5: {
 
         break;
        }

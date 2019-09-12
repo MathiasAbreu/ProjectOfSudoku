@@ -68,5 +68,9 @@ void printSudoku(int Sudoku[9][9]) {
 }
 
 void resetaSudoku(int Sudoku[9][9]) {
-
+  for (int i = 0; i <= 8; i++) {
+    for (int j = 0; j <= 8; j++) {
+      Sudoku[i][j] = 0;
+    }
+  }
 }

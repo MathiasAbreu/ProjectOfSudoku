@@ -71,9 +71,9 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     vector<int> coordenadas = {0,1,2,3,4,5,6,7,8};
     int pecasAremover;
-    if (dificuldade == 1) pecasAremover = 40;
-    else if (dificuldade == 2) pecasAremover = 50;
-    else pecasAremover = 55;
+    if (dificuldade == 1) pecasAremover = 3;
+    else if (dificuldade == 2) pecasAremover = 5;
+    else pecasAremover = 10;
     int linha;
     int coluna;
 
@@ -102,9 +102,9 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
   int valor;
   int pecasApreencher;
 
-  if (dificuldade == 1) pecasApreencher = 40;
-  else if (dificuldade == 2) pecasApreencher = 50;
-  else pecasApreencher = 55;
+  if (dificuldade == 1) pecasApreencher = 3;
+  else if (dificuldade == 2) pecasApreencher = 5;
+  else pecasApreencher = 10;
 
   while (true) { //Loop de preenchimento manual
 
