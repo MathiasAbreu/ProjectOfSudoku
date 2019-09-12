@@ -70,7 +70,7 @@ int main(){
        case 2:
        {
 
-           //insereSudoku();
+           criarSudoku();
            break;
        }
 

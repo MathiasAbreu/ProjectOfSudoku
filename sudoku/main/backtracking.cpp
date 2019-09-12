@@ -129,3 +129,46 @@ int jogar(int Sudoku[9][9]) {
   }
 
 }
+
+int criarSudoku() {
+	int l, c, v;
+	char op = 's';
+	char op2 = 'n';
+	int sudoku[9][9] = {{0,0,0,0,0,0,0,0,0},
+               		    {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0},
+                      {0,0,0,0,0,0,0,0,0}};
+
+
+cout << "\n";
+printSudoku(sudoku);
+
+	while(op == 's'){
+		cout << "\nDigite a linha (entre 1 e 9): " << endl;
+		cin >> l;
+		cout << "\nDigite a coluna (entre 1 e 9): " << endl;
+		cin >> c;
+		cout << "\nDigite o valor (entre 1 e 9): " << endl;
+		cin >> v;
+		if(sudoku[l-1][c-1] == 0){
+			sudoku[l-1][c-1] = v;
+		}else{
+			cout << "\n(A casa ja esta preenchida!!!)\n"<< endl;
+		}
+		printSudoku(sudoku);
+		cout << "\nDeseja continuar preenchendo o Sudoku? (s/n)" <<endl;
+		cin >> op;
+	}
+	cout << "\nResolver sudoku? (s/n)" << endl;
+	cin >> op2;
+	if(op2 == 's'){
+		printSudoku(sudoku);
+	}
+
+  return 0;
+}
