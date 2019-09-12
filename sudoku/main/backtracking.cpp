@@ -93,80 +93,78 @@ int gerador(int Sudoku[9][9], int dificuldade) {
 }
 
 int jogar(int Sudoku[9][9]) {
-  printSudoku(Sudoku);
 
-  while (true) {
-    cout << "Digite a linha em que deseja colocar um valor" << endl;
-    int linha;
+  int linha;
+  int coluna;
+  int valor;
+
+  while (true) { //Loop de preenchimento manual
+
+    printSudoku(Sudoku);
+
+    cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
     cin >> linha;
-    cout << "Digite a coluna" << endl;
-    int coluna;
+    cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
     cin >> coluna;
-    cout << "Qual o valor que deseja colocar?" << endl;
-    int valor;
+    cout << "\n| Digite o valor (entre 1 e 9): ";
     cin >> valor;
     linha--;
     coluna--;
 
     if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
-      cout << "Valores fora do intervalo de 1 a 9!" << endl;
+      cerr << "Valores fora do intervalo de 1 a 9!" << endl;
     }
 
     else if (Sudoku[linha][coluna] != 0) {
-      cout << "Lugar ja preenchido!" << endl;
+      cerr << "Lugar ja preenchido!" << endl;
     }
 
     else if (!verificarTudo(Sudoku,valor,linha,coluna)) {
-      cout << "Valor no lugar errado! Tente novamente." << endl;
+      cerr << "Valor no lugar errado! Tente novamente." << endl;
     }
 
     else {
-      Sudoku[linha][coluna] = valor;
 
-      printSudoku(Sudoku);
+      Sudoku[linha][coluna] = valor;
     }
 
   }
 
 }
 
-int criarSudoku() {
-	int l, c, v;
-	char op = 's';
-	char op2 = 'n';
-	int sudoku[9][9] = {{0,0,0,0,0,0,0,0,0},
-               		    {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0},
-                      {0,0,0,0,0,0,0,0,0}};
+int criarSudokuManualmente(int sudoku[9][9]) {
 
+	int linha, coluna, valor;
+	char operacaoInterna = 's';
 
 cout << "\n";
-printSudoku(sudoku);
 
-	while(op == 's'){
-		cout << "\nDigite a linha (entre 1 e 9): " << endl;
-		cin >> l;
-		cout << "\nDigite a coluna (entre 1 e 9): " << endl;
-		cin >> c;
-		cout << "\nDigite o valor (entre 1 e 9): " << endl;
-		cin >> v;
-		if(sudoku[l-1][c-1] == 0){
-			sudoku[l-1][c-1] = v;
+	while(true){
+
+    printSudoku(sudoku);
+
+		cout << "\nDigite a linha (entre 1 e 9) (0 para encerrar): ";
+		cin >> linha;
+		cout << "\nDigite a coluna (entre 1 e 9) (0 para encerrar): ";
+		cin >> coluna;
+		cout << "\nDigite o valor (entre 1 e 9): ";
+		cin >> valor;
+
+    if(linha == 0 || coluna == 0) //Condição de parada do loop de preenchimento.
+      break;
+
+		if(sudoku[linha - 1][coluna - 1] == 0){
+			sudoku[linha - 1][coluna - 1] = valor;
 		}else{
 			cout << "\n(A casa ja esta preenchida!!!)\n"<< endl;
 		}
-		printSudoku(sudoku);
-		cout << "\nDeseja continuar preenchendo o Sudoku? (s/n)" <<endl;
-		cin >> op;
 	}
+
 	cout << "\nResolver sudoku? (s/n)" << endl;
-	cin >> op2;
-	if(op2 == 's'){
+	cin >> operacaoInterna;
+
+	if(operacaoInterna == 's'){
+
 		function_backTracking(sudoku,0,0);
 		printSudoku(sudoku);
 	}
