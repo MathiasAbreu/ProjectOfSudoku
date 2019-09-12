@@ -66,3 +66,7 @@ void printSudoku(int Sudoku[9][9]) {
   }
   cout << "\n";
 }
+
+void resetaSudoku(int Sudoku[9][9]) {
+
+}

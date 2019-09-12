@@ -1,6 +1,6 @@
 #include<iostream>
 #include<cstring>
-#include"backtracking.cpp"
+#include"algorithms.cpp"
 
 # define tamanho 4
 using namespace std;
@@ -17,6 +17,17 @@ int SudokuManual[9][9] = {
                     {0,0,0,0,0,0,0,0,0}};
 
 int SudokuGerado[9][9] = {
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0}};
+
+int SudokuGeradoSolucao[9][9] = {
                     {0,0,0,0,0,0,0,0,0},
                     {0,0,0,0,0,0,0,0,0},
                     {0,0,0,0,0,0,0,0,0},
@@ -61,8 +72,11 @@ int main(){
           cout << "| Escolha a opcao: ";
 
           cin >> dificuldade;
-          gerador(SudokuGerado, dificuldade);
-          jogar(SudokuGerado);
+          gerador(SudokuGerado,SudokuGeradoSolucao, dificuldade);
+          printSudoku(SudokuGeradoSolucao);
+          jogar(SudokuGerado, SudokuGeradoSolucao, dificuldade);
+          resetaSudoku(SudokuGerado);
+          resetaSudoku(SudokuGeradoSolucao);
 
           break;
 
@@ -80,17 +94,18 @@ int main(){
        case 2: {
 
         criarSudokuManualmente(SudokuManual);
+        resetaSudoku(SudokuManual);
         break;
        }
 
        case 3: {
-           
+
         //mostraRankingGeral();
         break;
        }
 
        case 4: {
- 
+
         break;
        }
 

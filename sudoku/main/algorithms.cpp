@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <array>
 #include "methods.cpp"
 
 using namespace std;
@@ -41,7 +42,7 @@ int function_backTracking(int Matriz[9][9], int linha, int coluna) {
     }
 }
 
-int gerador(int Sudoku[9][9], int dificuldade) {
+int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     for (int i = 0; i <= 8; i++) {
       vector<int> linha = {1,2,3,4,5,6,7,8,9};
@@ -62,7 +63,11 @@ int gerador(int Sudoku[9][9], int dificuldade) {
 
     }
 
-    printSudoku(Sudoku);
+    for (int i = 0; i <= 8; i++) {
+      for (int j = 0; j <= 8; j++) {
+        SudokuSol[i][j] = Sudoku[i][j];
+      }
+    }
 
     vector<int> coordenadas = {0,1,2,3,4,5,6,7,8};
     int pecasAremover;
@@ -87,16 +92,19 @@ int gerador(int Sudoku[9][9], int dificuldade) {
 
     }
 
-    printSudoku(Sudoku);
-
     return 0;
 }
 
-int jogar(int Sudoku[9][9]) {
+int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
   int linha;
   int coluna;
   int valor;
+  int pecasApreencher;
+
+  if (dificuldade == 1) pecasApreencher = 40;
+  else if (dificuldade == 2) pecasApreencher = 50;
+  else pecasApreencher = 55;
 
   while (true) { //Loop de preenchimento manual
 
@@ -119,13 +127,18 @@ int jogar(int Sudoku[9][9]) {
       cerr << "Lugar ja preenchido!" << endl;
     }
 
-    else if (!verificarTudo(Sudoku,valor,linha,coluna)) {
+    else if (SudokuSol[linha][coluna] != valor) {
       cerr << "Valor no lugar errado! Tente novamente." << endl;
     }
 
     else {
 
       Sudoku[linha][coluna] = valor;
+      pecasApreencher--;
+      if (pecasApreencher == 0) {
+        cout << "\nSudoku completo! Parabens!";
+        return 0;
+      }
     }
 
   }
