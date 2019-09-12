@@ -5,23 +5,21 @@
 # define tamanho 4
 using namespace std;
 
-int Sudoku[9][9] = {{0,0,5,3,6,0,0,0,0},
-                    {0,0,0,7,0,0,4,0,2},
-                    {3,2,9,0,0,0,0,0,0},
-                    {9,8,7,0,0,0,0,0,1},
-                    {5,0,0,2,0,9,0,7,3},
-                    {0,0,0,0,0,1,0,6,5},
-                    {0,0,0,6,5,0,0,2,0},
-                    {6,3,2,0,0,0,0,8,9},
-                    {0,0,0,0,0,0,7,1,6}};
+int Sudoku[9][9] = {{0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0},
+                    {0,0,0,0,0,0,0,0,0}};
 
 int mostrarSudoku() {
 
   function_backTracking(Sudoku,0,0);
 
-  for(int i = 0; i <= 8; i++) {
-    printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
-  }
+  printSudoku(Sudoku);
 
   return 0;
 }
@@ -53,7 +51,9 @@ int main(){
              cout << "3. Dificil" << endl;
              int dificuldade;
              cin >> dificuldade;
-             gerador(dificuldade);
+             gerador(Sudoku, dificuldade);
+             jogar(Sudoku);
+
              break;
 
            } else if (modo == 2) {

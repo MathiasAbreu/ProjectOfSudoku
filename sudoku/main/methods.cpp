@@ -1,5 +1,7 @@
 #include"methods.h"
 
+using namespace std;
+
 int verificaLinha(int Matriz[9][9], int numero, int linha, int coluna) {
 
     for(int indice = 0; indice <= 8; indice++) {
@@ -56,4 +58,11 @@ int verificaSetor(int Matriz[9][9], int numero, int linha, int coluna) {
 int verificarTudo(int Matriz[9][9], int numero, int linha, int coluna) {
   if (verificaLinha(Matriz, numero, linha, coluna) && verificaColuna(Matriz, numero, linha, coluna) && verificaSetor(Matriz, numero, linha, coluna)) return true;
   else return false;
+}
+
+void printSudoku(int Sudoku[9][9]) {
+  for(int i = 0; i <= 8; i++) {
+    printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
+  }
+  cout << "\n";
 }
