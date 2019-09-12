@@ -47,7 +47,13 @@ int main(){
            int modo;
            cin >> modo;
            if(modo == 1) {
-             gerador(1);
+             cout << "*************ESCOLHA A DIFICULDADE**************" << endl;
+             cout << "1. Facil" << endl;
+             cout << "2. Medio" << endl;
+             cout << "3. Dificil" << endl;
+             int dificuldade;
+             cin >> dificuldade;
+             gerador(dificuldade);
              break;
 
            } else if (modo == 2) {

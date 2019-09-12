@@ -75,6 +75,33 @@ int gerador(int dificuldade) {
     for(int i = 0; i <= 8; i++) {
       printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
     }
+    vector<int> coordenadas = {0,1,2,3,4,5,6,7,8};
+    int pecasAremover;
+    if (dificuldade == 1) pecasAremover == 55;
+    else if (dificuldade == 2) pecasAremover = 50;
+    else pecasAremover == 40;
+    int linha;
+    int coluna;
+
+    while (pecasAremover != 0) {
+      unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+      shuffle (coordenadas.begin(), coordenadas.end(), default_random_engine(seed));
+      linha = coordenadas[0];
+      seed = chrono::system_clock::now().time_since_epoch().count();
+      shuffle (coordenadas.begin(), coordenadas.end(), default_random_engine(seed));
+      coluna = coordenadas[0];
+
+      if (Sudoku[linha][coluna] != 0) {
+        Sudoku[linha][coluna] = 0;
+        pecasAremover--;
+        cout << "\n" + pecasAremover;
+      }
+
+    }
+
+    for(int i = 0; i <= 8; i++) {
+      printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
+    }
 
     return 0;
 
