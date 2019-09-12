@@ -68,7 +68,7 @@ int gerador(int Sudoku[9][9], int dificuldade) {
     int pecasAremover;
     if (dificuldade == 1) pecasAremover = 40;
     else if (dificuldade == 2) pecasAremover = 50;
-    else pecasAremover == 55;
+    else pecasAremover = 55;
     int linha;
     int coluna;
 
