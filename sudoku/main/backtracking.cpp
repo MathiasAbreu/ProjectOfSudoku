@@ -167,6 +167,7 @@ printSudoku(sudoku);
 	cout << "\nResolver sudoku? (s/n)" << endl;
 	cin >> op2;
 	if(op2 == 's'){
+		function_backTracking(sudoku,0,0);
 		printSudoku(sudoku);
 	}
 
