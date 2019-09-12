@@ -43,19 +43,18 @@ int main(){
    while(true){
 
       int operacao;
-      cout << "\n| ****  SUDOKU  **** |" << endl;
-      cout <<   "| 1 - Novo Jogo      |" << endl;
-      cout <<   "| 2 - Inserir Jogo   |" << endl;
-      cout <<   "| 3 - Ranking geral  |" << endl;
-      cout <<   "| 4 - Sair           |" << endl;
-      cout <<   "| Escolha a opcao: " << endl;
+      cout << "\n| ****          SUDOKU             **** |" << endl;
+      cout <<   "| 1 - Gerar Sudoku Automaticamente      |" << endl;
+      cout <<   "| 2 - Inserir Sudoku Manualmente        |" << endl;
+      cout <<   "| 3 - Sair                              |" << endl;
+      cout <<   "| Escolha a opcao: ";
 
       cin >> operacao;
       switch(operacao){
       case 1: {
 
         int modo;
-        cout << "| ****  ESCOLHA O MODO  **** |" << endl;
+        cout << "\n| ****  ESCOLHA O MODO  **** |" << endl;
         cout << "| 1. Modo 1 jogador          |" << endl;
         cout << "| 2. Modo competitivo (1x1)  |" << endl;
         cout << "| Escolha a opcao: ";
@@ -64,13 +63,14 @@ int main(){
         if(modo == 1) {
 
           int dificuldade;
-          cout << "| * ESCOLHA A DIFICULDADE * |" << endl;
+          cout << "\n| * ESCOLHA A DIFICULDADE * |" << endl;
           cout << "| 1. Modo Facil             |" << endl;
           cout << "| 2. Modo Medio             |" << endl;
           cout << "| 3. Modo Dificil           |" << endl;
           cout << "| Escolha a opcao: ";
 
           cin >> dificuldade;
+          cout << "\n";
           gerador(SudokuGerado,SudokuGeradoSolucao, dificuldade);
           printSudoku(SudokuGeradoSolucao);
           jogar(SudokuGerado, SudokuGeradoSolucao, dificuldade);
@@ -98,12 +98,6 @@ int main(){
        }
 
        case 3: {
-
-        //mostraRankingGeral();
-        break;
-       }
-
-       case 4: {
 
         break;
        }
