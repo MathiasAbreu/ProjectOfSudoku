@@ -62,7 +62,7 @@ int verificarTudo(int Matriz[9][9], int numero, int linha, int coluna) {
 
 void printSudoku(int Sudoku[9][9]) {
 
-    cout << "\n    |A|B|C|D|E|F|G|H|I|\n" << endl;
+    cout << "    |A|B|C|D|E|F|G|H|I|\n" << endl;
     for(int i = 0; i <= 8; i++) {
         printf("%d   |%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",i + 1,Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
     }
