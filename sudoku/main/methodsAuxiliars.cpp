@@ -1,3 +1,5 @@
+#include <iostream>
+
 using namespace std;
 
 int verificaLinha(int Matriz[9][9], int numero, int linha, int coluna) {
@@ -59,9 +61,11 @@ int verificarTudo(int Matriz[9][9], int numero, int linha, int coluna) {
 }
 
 void printSudoku(int Sudoku[9][9]) {
-  for(int i = 0; i <= 8; i++) {
-    printf("|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
-  }
+
+    cout << " |A|B|C|D|E|F|G|H|I|" << endl;
+    for(int i = 0; i <= 8; i++) {
+        printf("%d|%d|%d|%d|%d|%d|%d|%d|%d|%d|\n",i + 1,Sudoku[i][0],Sudoku[i][1],Sudoku[i][2],Sudoku[i][3],Sudoku[i][4],Sudoku[i][5],Sudoku[i][6],Sudoku[i][7],Sudoku[i][8]);
+    }
   cout << "\n";
 }
 
@@ -71,4 +75,59 @@ void resetaSudoku(int Sudoku[9][9]) {
       Sudoku[i][j] = 0;
     }
   }
+}
+
+int retornarLinha(char valorLinha) {
+
+    switch (valorLinha) {
+    case 'A': {
+    
+        return 0;
+        break;
+    }
+    case 'B': {
+
+        return 1;
+        break;
+    }
+    case 'C': {
+
+        return 2;
+        break;
+    }
+    case 'D': {
+
+        return 3;
+        break;
+    }
+    case 'E': {
+
+        return 4;
+        break;
+    }
+    case 'F': {
+
+        return 5;
+        break;
+    }
+    case 'G': {
+
+        return 6;
+        break;
+    }
+    case 'H': {
+
+        return 7;
+        break;
+    }
+    case 'I': {
+
+        return 8;
+        break;
+    }
+    default:
+
+        return 9;
+        break;
+    }
 }

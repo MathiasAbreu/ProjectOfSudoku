@@ -71,7 +71,7 @@ int main(){
 
           cin >> dificuldade;
           if (dificuldade > 3 || dificuldade < 1) {
-            cout << "\nOpcao invalida! Tente novamente!\n";
+            cerr << "\nOpcao invalida! Tente novamente!\n";
             break;
           }
           cout << "\n";
