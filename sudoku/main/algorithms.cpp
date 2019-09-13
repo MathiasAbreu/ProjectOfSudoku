@@ -135,7 +135,7 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     linha = retornarLinha(valorLinha);
     coluna--;
 
-    if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
+    if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
       cerr << "Valores fora do intervalo de 1 a 9!" << endl;
     }
 
@@ -143,9 +143,9 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
       cerr << "Lugar ja preenchido!" << endl;
     }
 
-    //else if (SudokuSol[linha][coluna] != valor) {
-      //cerr << "Valor no lugar errado! Tente novamente." << endl;
-    //}
+    else if (SudokuSol[linha][coluna] != valor) {
+      cerr << "Valor no lugar errado! Tente novamente." << endl;
+    }
 
     //Eu comentei aqui para ver se o sudoku vai possuir varias solucoes
     
@@ -234,7 +234,7 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
       linha = retornarLinha(valorLinha);
       coluna--;
 
-      if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
+      if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
         cerr << "Valores fora do intervalo de 1 a 9!" << endl;
       }
 
@@ -276,7 +276,7 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
       linha = retornarLinha(valorLinha);
       coluna--;
 
-      if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
+      if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
         cerr << "Valores fora do intervalo de 1 a 9!" << endl;
       }
 
