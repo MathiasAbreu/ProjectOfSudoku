@@ -43,7 +43,7 @@ int main(){
    while(true){
 
       int operacao;
-      cout << "\n| ****          SUDOKU             **** |" << endl;
+      cout << "\n|  ***          SUDOKU             ***  |" << endl;
       cout <<   "| 1 - Gerar Sudoku Automaticamente      |" << endl;
       cout <<   "| 2 - Inserir Sudoku Manualmente        |" << endl;
       cout <<   "| 3 - Sair                              |" << endl;
@@ -54,7 +54,7 @@ int main(){
       case 1: {
 
         int modo;
-        cout << "\n| ****  ESCOLHA O MODO  **** |" << endl;
+        cout << "\n|  ***  ESCOLHA O MODO  ***  |" << endl;
         cout << "| 1. Modo 1 jogador          |" << endl;
         cout << "| 2. Modo competitivo (1x1)  |" << endl;
         cout << "| Escolha a opcao: ";
