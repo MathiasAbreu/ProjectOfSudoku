@@ -3,7 +3,7 @@
 #include <random>
 #include <chrono>
 #include <array>
-#include "methodsAuxiliars.cpp"
+#include "methods.cpp"
 
 using namespace std;
 
@@ -97,8 +97,6 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
 int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
-  char valorLinha;
-
   int linha;
   int coluna;
   int valor;
@@ -112,30 +110,16 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     printSudoku(Sudoku);
 
-    cout << "\n| Digite D0 para receber uma dica.";
-    cout << "\n| Digite S0 para visualizar a solução do sudoku.";
-    cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-    cin >> valorLinha >> coluna;
-
-    if(valorLinha == 'D' && coluna == 0) {
-
-      //Caio, gera uma funcao aqui que escolhe uma casa aleatoria vazia e adiciona o numero que encaixa nela.
-    }
-    else if (valorLinha == 'S' && coluna == 0) {
-
-      function_backTracking(Sudoku,0,0);
-      printSudoku(Sudoku);
-    }
-    if(coluna == 0)
-      break;
-
+    cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
+    cin >> linha;
+    cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
+    cin >> coluna;
     cout << "\n| Digite o valor (entre 1 e 9): ";
     cin >> valor;
-
-    linha = retornarLinha(valorLinha);
+    linha--;
     coluna--;
 
-    if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
+    if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
       cerr << "Valores fora do intervalo de 1 a 9!" << endl;
     }
 
@@ -147,14 +131,12 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
       cerr << "Valor no lugar errado! Tente novamente." << endl;
     }
 
-    //Eu comentei aqui para ver se o sudoku vai possuir varias solucoes
-
     else {
 
       Sudoku[linha][coluna] = valor;
       pecasApreencher--;
       if (pecasApreencher == 0) {
-        cout << "\nSudoku completo! Parabens!!";
+        cout << "\nSudoku completo! Parabens!";
         return 0;
       }
     }
@@ -165,8 +147,6 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
 int criarSudokuManualmente(int sudoku[9][9]) {
 
-  char valorLinha;
-
 	int linha, coluna, valor;
 	char operacaoInterna = 's';
 
@@ -176,19 +156,18 @@ cout << "\n";
 
     printSudoku(sudoku);
 
-		cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-    cin >> valorLinha >> coluna;
-
-    if(coluna == 0)
-      break;
-
-    linha = retornarLinha(valorLinha);
-
+		cout << "\nDigite a linha (entre 1 e 9) (0 para encerrar): ";
+		cin >> linha;
+		cout << "\nDigite a coluna (entre 1 e 9) (0 para encerrar): ";
+		cin >> coluna;
 		cout << "\nDigite o valor (entre 1 e 9): ";
 		cin >> valor;
 
-		if(sudoku[linha][coluna - 1] == 0){
-			sudoku[linha][coluna - 1] = valor;
+    if(linha == 0 || coluna == 0) //Condição de parada do loop de preenchimento.
+      break;
+
+		if(sudoku[linha - 1][coluna - 1] == 0){
+			sudoku[linha - 1][coluna - 1] = valor;
 		}else{
 			cout << "\n(A casa ja esta preenchida!!!)\n"<< endl;
 		}
@@ -208,8 +187,6 @@ cout << "\n";
 
 int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
 
-  char valorLinha;
-
   int linha;
   int coluna;
   int valor;
@@ -218,23 +195,22 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
   int tempoJ2 = 0;
 
   while (true) {
-
     auto start = chrono::steady_clock::now();
     while (true) { // Turno no  jogador 1
-
       printSudoku(Sudoku);
 
-      cout << "\n|Turno do jogador 1!";
-      cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-      cin >> valorLinha >> coluna;
+      cout << "\nTurno do jogador 1!";
 
+      cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
+      cin >> linha;
+      cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
+      cin >> coluna;
       cout << "\n| Digite o valor (entre 1 e 9): ";
       cin >> valor;
-
-      linha = retornarLinha(valorLinha);
+      linha--;
       coluna--;
 
-      if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
+      if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
         cerr << "Valores fora do intervalo de 1 a 9!" << endl;
       }
 
@@ -266,17 +242,18 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
     while (true) { // Turno no  jogador 2
       printSudoku(Sudoku);
 
-      cout << "\n| Turno do jogador 2!";
-      cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-      cin >> valorLinha >> coluna;
+      cout << "\nTurno do jogador 2!";
 
+      cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
+      cin >> linha;
+      cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
+      cin >> coluna;
       cout << "\n| Digite o valor (entre 1 e 9): ";
       cin >> valor;
-
-      linha = retornarLinha(valorLinha);
+      linha--;
       coluna--;
 
-      if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
+      if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
         cerr << "Valores fora do intervalo de 1 a 9!" << endl;
       }
 
