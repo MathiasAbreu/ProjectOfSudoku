@@ -116,7 +116,7 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     cout << "\n| Digite S0 para visualizar a solução do sudoku.";
     cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
     cin >> valorLinha >> coluna;
-    
+
     if(valorLinha == 'D' && coluna == 0) {
 
       //Caio, gera uma funcao aqui que escolhe uma casa aleatoria vazia e adiciona o numero que encaixa nela.
@@ -128,10 +128,10 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     }
     if(coluna == 0)
       break;
-    
+
     cout << "\n| Digite o valor (entre 1 e 9): ";
     cin >> valor;
-    
+
     linha = retornarLinha(valorLinha);
     coluna--;
 
@@ -148,13 +148,13 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     //}
 
     //Eu comentei aqui para ver se o sudoku vai possuir varias solucoes
-    
+
     else {
 
       Sudoku[linha][coluna] = valor;
       pecasApreencher--;
       if (pecasApreencher == 0) {
-        cout << "\nSudoku completo! Parabens!";
+        cout << "\nSudoku completo! Parabens!!";
         return 0;
       }
     }
@@ -272,7 +272,7 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
 
       cout << "\n| Digite o valor (entre 1 e 9): ";
       cin >> valor;
-      
+
       linha = retornarLinha(valorLinha);
       coluna--;
 
