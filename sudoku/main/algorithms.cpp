@@ -97,7 +97,7 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
 int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
-  char valorColuna;
+  char valorLinha;
 
   int linha;
   int coluna;
@@ -115,25 +115,25 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     cout << "\n| Digite D0 para receber uma dica.";
     cout << "\n| Digite S0 para visualizar a solução do sudoku.";
     cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-    cin >> linha >> valorColuna;
+    cin >> valorLinha >> coluna;
 
-    if(valorColuna == 'D' && coluna == 0) {
+    if(valorLinha == 'D' && coluna == 0) {
 
       //Caio, gera uma funcao aqui que escolhe uma casa aleatoria vazia e adiciona o numero que encaixa nela.
     }
-    else if (valorColuna == 'S' && coluna == 0) {
+    else if (valorLinha == 'S' && coluna == 0) {
 
       function_backTracking(Sudoku,0,0);
       printSudoku(Sudoku);
     }
-    if(linha == 0)
+    if(coluna == 0)
       break;
 
     cout << "\n| Digite o valor (entre 1 e 9): ";
     cin >> valor;
 
-    coluna = retornarColuna(valorColuna);
-    linha--;
+    linha = retornarLinha(valorLinha);
+    coluna--;
 
     if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
       cerr << "Valores fora do intervalo de 1 a 9!" << endl;
@@ -165,7 +165,7 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
 int criarSudokuManualmente(int sudoku[9][9]) {
 
-  char valorColuna;
+  char valorLinha;
 
 	int linha, coluna, valor;
 	char operacaoInterna = 's';
@@ -176,31 +176,21 @@ cout << "\n";
 
     printSudoku(sudoku);
 
-		cout << "\n| Inserir <coluna (A a I)> <linha (1 a 9) (0 para encerrar)> : ";
-    cin >> valorColuna >> linha;
+		cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
+    cin >> valorLinha >> coluna;
 
-    if(linha == 0)
+    if(coluna == 0)
       break;
 
-    coluna = retornarColuna(valorColuna);
+    linha = retornarLinha(valorLinha);
 
 		cout << "\nDigite o valor (entre 1 e 9): ";
 		cin >> valor;
 
-		if(sudoku[linha - 1][coluna] == 0){
-
-			sudoku[linha - 1][coluna] = valor;
-
-      if(verificaLinha(sudoku,valor,linha - 1,coluna) && verificaColuna(sudoku,valor,linha - 1,coluna) && verificaSetor(sudoku,valor,linha - 1,coluna)) {
-        
-      }
-      else {
-        sudoku[linha - 1] [coluna] = 0;
-        cerr << "\nValor inserido burla as restrições básicas do sudoku!" <<endl;
-      }
-
-		}else {
-			cerr << "\n(A casa ja esta preenchida!!!)\n"<< endl;
+		if(sudoku[coluna - 1][linha] == 0){
+			sudoku[coluna - 1][linha] = valor;
+		}else{
+			cout << "\n(A casa ja esta preenchida!!!)\n"<< endl;
 		}
 	}
 
@@ -218,7 +208,7 @@ cout << "\n";
 
 int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
 
-  char valorColuna;
+  char valorLinha;
 
   int linha;
   int coluna;
@@ -236,13 +226,13 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
 
       cout << "\n|Turno do jogador 1!";
       cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-      cin >> linha >> valorColuna;
+      cin >> valorLinha >> coluna;
 
       cout << "\n| Digite o valor (entre 1 e 9): ";
       cin >> valor;
 
-      coluna = retornarColuna(valorColuna);
-      linha--;
+      linha = retornarLinha(valorLinha);
+      coluna--;
 
       if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
         cerr << "Valores fora do intervalo de 1 a 9!" << endl;
@@ -278,12 +268,12 @@ int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
 
       cout << "\n| Turno do jogador 2!";
       cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
-      cin >> linha >> valorColuna;
+      cin >> valorLinha >> coluna;
 
       cout << "\n| Digite o valor (entre 1 e 9): ";
       cin >> valor;
 
-      linha = retornarColuna(valorColuna);
+      linha = retornarLinha(valorLinha);
       coluna--;
 
       if ((linha < 0 || linha > 8) || (coluna < 0 || coluna > 8) || (valor < 1 || valor > 9)) {
