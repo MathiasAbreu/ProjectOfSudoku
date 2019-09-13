@@ -44,6 +44,8 @@ int function_backTracking(int Matriz[9][9], int linha, int coluna) {
 
 int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
+  return 0;
+
     for (int i = 0; i <= 8; i++) {
       vector<int> linha = {1,2,3,4,5,6,7,8,9};
       unsigned seed = chrono::system_clock::now().time_since_epoch().count();
@@ -97,6 +99,8 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
 int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
+  char valorColuna;
+
   int linha;
   int coluna;
   int valor;
@@ -110,14 +114,28 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     printSudoku(Sudoku);
 
-    cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
-    cin >> linha;
-    cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
-    cin >> coluna;
+    cout << "\n| Digite D0 para receber uma dica.";
+    cout << "\n| Digite S0 para visualizar a solução do sudoku.";
+    cout << "\n| Inserir <coluna (A a I)> <linha (1 a 9) (0 para encerrar)> : ";
+    cin >> valorColuna >> linha;
+
+    if(valorColuna == 'D' && linha == 0) {
+
+      //Caio, gera uma funcao aqui que escolhe uma casa aleatoria vazia e adiciona o numero que encaixa nela.
+    }
+    else if (valorColuna == 'S' && linha == 0) {
+
+      function_backTracking(Sudoku,0,0);
+      printSudoku(Sudoku);
+    }
+    if(linha == 0)
+      break;
+
     cout << "\n| Digite o valor (entre 1 e 9): ";
     cin >> valor;
+
+    coluna = retornarColuna(valorColuna);
     linha--;
-    coluna--;
 
     if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
       cerr << "Valores fora do intervalo de 1 a 9!" << endl;
@@ -147,6 +165,8 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
 int criarSudokuManualmente(int sudoku[9][9]) {
 
+  char valorColuna;
+
 	int linha, coluna, valor;
 	char operacaoInterna = 's';
 
@@ -156,19 +176,31 @@ cout << "\n";
 
     printSudoku(sudoku);
 
-		cout << "\nDigite a linha (entre 1 e 9) (0 para encerrar): ";
-		cin >> linha;
-		cout << "\nDigite a coluna (entre 1 e 9) (0 para encerrar): ";
-		cin >> coluna;
+		cout << "\n| Inserir <coluna (A a I)> <linha (1 a 9) (0 para encerrar)> : ";
+    cin >> valorColuna >> linha;
+
+    if(linha == 0)
+      break;
+
+    coluna = retornarColuna(valorColuna);
+
 		cout << "\nDigite o valor (entre 1 e 9): ";
 		cin >> valor;
 
-    if(linha == 0 || coluna == 0) //Condição de parada do loop de preenchimento.
-      break;
+		if(sudoku[linha - 1][coluna] == 0){
 
-		if(sudoku[linha - 1][coluna - 1] == 0){
-			sudoku[linha - 1][coluna - 1] = valor;
-		}else{
+			sudoku[linha - 1][coluna] = valor;
+
+      if(verificaLinha(sudoku,valor,linha - 1,coluna) && verificaColuna(sudoku,valor,linha - 1,coluna) && verificaSetor(sudoku,valor,linha - 1,coluna)) {
+        
+      }
+      else {
+        sudoku[linha - 1] [coluna] = 0;
+        cerr << "\nValor inserido burla as restrições básicas do sudoku!" <<endl;
+      }
+
+		}else {
+
 			cout << "\n(A casa ja esta preenchida!!!)\n"<< endl;
 		}
 	}
