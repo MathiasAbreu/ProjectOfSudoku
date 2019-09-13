@@ -72,7 +72,7 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     vector<int> coordenadas = {0,1,2,3,4,5,6,7,8};
     int pecasAremover;
     if (dificuldade == 1) pecasAremover = 3;
-    else if (dificuldade == 2) pecasAremover = 5;
+    else if (dificuldade == 2) pecasAremover = 4;
     else pecasAremover = 10;
     int linha;
     int coluna;
@@ -103,7 +103,7 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
   int pecasApreencher;
 
   if (dificuldade == 1) pecasApreencher = 3;
-  else if (dificuldade == 2) pecasApreencher = 5;
+  else if (dificuldade == 2) pecasApreencher = 4;
   else pecasApreencher = 10;
 
   while (true) { //Loop de preenchimento manual
@@ -183,4 +183,105 @@ cout << "\n";
 	}
 
   return 0;
+}
+
+int jogarSudokuCompetitivo(int Sudoku[9][9], int SudokuSol[9][9]) {
+
+  int linha;
+  int coluna;
+  int valor;
+  int pecasApreencher = 4;
+  int tempoJ1 = 0;
+  int tempoJ2 = 0;
+
+  while (true) {
+    auto start = chrono::steady_clock::now();
+    while (true) { // Turno no  jogador 1
+      printSudoku(Sudoku);
+
+      cout << "\nTurno do jogador 1!";
+
+      cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
+      cin >> linha;
+      cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
+      cin >> coluna;
+      cout << "\n| Digite o valor (entre 1 e 9): ";
+      cin >> valor;
+      linha--;
+      coluna--;
+
+      if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
+        cerr << "Valores fora do intervalo de 1 a 9!" << endl;
+      }
+
+      else if (Sudoku[linha][coluna] != 0) {
+        cerr << "Lugar ja preenchido!" << endl;
+      }
+
+      else if (SudokuSol[linha][coluna] != valor) {
+        cerr << "Valor no lugar errado! Tente novamente." << endl;
+      }
+
+      else {
+        auto end = chrono::steady_clock::now();
+        tempoJ1 = tempoJ1 + chrono::duration_cast<chrono::seconds>(end - start).count();
+        cout << "Tempo total do Jogador 1: " << tempoJ1 << " segundos.\n";
+        Sudoku[linha][coluna] = valor;
+        pecasApreencher--;
+        if (pecasApreencher == 0) {
+          if (tempoJ1 > tempoJ2) cout << "\nJogador 2 venceu!\n";
+          else "\nJogador 1 venceu!\n";
+          cout << "Tempo do Jogador 1: " << tempoJ1 << " segundos." << "\nTempo do Jogador 2: " << tempoJ2 << " segundos.";
+          return 0;
+        }
+        break;
+      }
+    }
+
+    start = chrono::steady_clock::now();
+    while (true) { // Turno no  jogador 2
+      printSudoku(Sudoku);
+
+      cout << "\nTurno do jogador 2!";
+
+      cout << "\n| Digite a linha (entre 1 e 9) (0 para encerrar): ";
+      cin >> linha;
+      cout << "\n| Digite a coluna (entre 1 e 9) (0 para encerrar): ";
+      cin >> coluna;
+      cout << "\n| Digite o valor (entre 1 e 9): ";
+      cin >> valor;
+      linha--;
+      coluna--;
+
+      if (linha < 0 && linha > 8 && coluna < 0 && coluna > 8 && valor < 1 && valor > 9) {
+        cerr << "Valores fora do intervalo de 1 a 9!" << endl;
+      }
+
+      else if (Sudoku[linha][coluna] != 0) {
+        cerr << "Lugar ja preenchido!" << endl;
+      }
+
+      else if (SudokuSol[linha][coluna] != valor) {
+        cerr << "Valor no lugar errado! Tente novamente." << endl;
+      }
+
+      else {
+        auto end = chrono::steady_clock::now();
+        tempoJ2 = tempoJ2 + chrono::duration_cast<chrono::seconds>(end - start).count();
+        cout << "Tempo total do Jogador 2: " << tempoJ2 << " segundos.\n";
+        Sudoku[linha][coluna] = valor;
+        pecasApreencher--;
+        if (pecasApreencher == 0) {
+          if (tempoJ1 > tempoJ2) cout << "\nJogador 2 venceu!\n";
+          else "\nJogador 1 venceu!\n";
+          cout << "Tempo do Jogador 1: " << tempoJ1 << " segundos." << "\nTempo do Jogador 2: " << tempoJ2 << " segundos.";
+          return 0;
+        }
+        break;
+      }
+    }
+
+
+  }
+
 }

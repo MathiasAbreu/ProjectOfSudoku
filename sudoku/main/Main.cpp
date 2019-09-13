@@ -70,9 +70,13 @@ int main(){
           cout << "| Escolha a opcao: ";
 
           cin >> dificuldade;
+          if (dificuldade > 3 || dificuldade < 1) {
+            cout << "\nOpcao invalida! Tente novamente!\n";
+            break;
+          }
+
           cout << "\n";
           gerador(SudokuGerado,SudokuGeradoSolucao, dificuldade);
-          printSudoku(SudokuGeradoSolucao);
           jogar(SudokuGerado, SudokuGeradoSolucao, dificuldade);
           resetaSudoku(SudokuGerado);
           resetaSudoku(SudokuGeradoSolucao);
@@ -80,29 +84,32 @@ int main(){
           break;
 
         } else if (modo == 2) {
-          //criaModoMultiplayer();
+          gerador(SudokuGerado,SudokuGeradoSolucao, 2);
+          jogarSudokuCompetitivo(SudokuGerado,SudokuGeradoSolucao);
+          resetaSudoku(SudokuGerado);
+          resetaSudoku(SudokuGeradoSolucao);
           break;
 
         } else {
-          cout << "Opcao invalida! Tente novamente!" << endl;;
+          cout << "\nOpcao invalida! Tente novamente!\n";
           break;
         }
 
       }
 
        case 2: {
-
         criarSudokuManualmente(SudokuManual);
         resetaSudoku(SudokuManual);
         break;
        }
 
        case 3: {
-
-        break;
+        cout << "Tchau";
+        return 0;
        }
 
        default: {
+        cout << "\nOpcao invalida! Tente novamente!\n";
         break;
       }
     }
