@@ -74,7 +74,6 @@ int main(){
             cout << "\nOpcao invalida! Tente novamente!\n";
             break;
           }
-
           cout << "\n";
           gerador(SudokuGerado,SudokuGeradoSolucao, dificuldade);
           jogar(SudokuGerado, SudokuGeradoSolucao, dificuldade);
@@ -84,6 +83,7 @@ int main(){
           break;
 
         } else if (modo == 2) {
+          cout << "\n";
           gerador(SudokuGerado,SudokuGeradoSolucao, 2);
           jogarSudokuCompetitivo(SudokuGerado,SudokuGeradoSolucao);
           resetaSudoku(SudokuGerado);

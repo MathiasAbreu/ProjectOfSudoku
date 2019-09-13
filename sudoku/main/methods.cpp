@@ -1,5 +1,3 @@
-#include"methods.h"
-
 using namespace std;
 
 int verificaLinha(int Matriz[9][9], int numero, int linha, int coluna) {
