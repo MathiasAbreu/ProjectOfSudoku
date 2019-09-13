@@ -69,21 +69,18 @@ int main(){
           cout << "| 3. Modo Dificil           |" << endl;
           cout << "| Escolha a opcao: ";
 
-          scanf("%i", &dificuldade);
-          printf("%d\n", dificuldade);
-
-          cout << "passou5";
-          if(dificuldade <= 3 && dificuldade >= 1) {
-            gerador(SudokuGerado,SudokuGeradoSolucao, dificuldade);
-            jogar(SudokuGerado, SudokuGeradoSolucao, dificuldade);
-            resetaSudoku(SudokuGerado);
-            resetaSudoku(SudokuGeradoSolucao);
+          cin >> dificuldade;
+          if (dificuldade > 3 || dificuldade < 1) {
+            cerr << "\nOpcao invalida! Tente novamente!\n";
+            break;
           }
-          else {
-        
-          }
+          cout << "\n";
+          gerador(SudokuGerado,SudokuGeradoSolucao, dificuldade);
+          jogar(SudokuGerado, SudokuGeradoSolucao, dificuldade);
+          resetaSudoku(SudokuGerado);
+          resetaSudoku(SudokuGeradoSolucao);
 
-          //break;
+          break;
 
         } else if (modo == 2) {
           cout << "\n";

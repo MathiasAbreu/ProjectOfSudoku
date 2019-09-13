@@ -3,7 +3,6 @@
 #include <random>
 #include <chrono>
 #include <array>
-#include <time.h>
 #include "methodsAuxiliars.cpp"
 
 using namespace std;
@@ -44,14 +43,11 @@ int function_backTracking(int Matriz[9][9], int linha, int coluna) {
 }
 
 int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
-  cout << "passou1";
-  srand (time(NULL));
-  cout << "passou2";
+
     for (int i = 0; i <= 8; i++) {
       vector<int> linha = {1,2,3,4,5,6,7,8,9};
-      cout << "passou3";
-      shuffle (linha.begin(), linha.end(), default_random_engine(rand()));
-      cout << "passou4";
+      unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+      shuffle (linha.begin(), linha.end(), default_random_engine(seed));
 
       int cont = 0;
       while (cont != 9) {
@@ -82,9 +78,11 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
     int coluna;
 
     while (pecasAremover != 0) {
-      shuffle (coordenadas.begin(), coordenadas.end(), default_random_engine(rand()));
+      unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+      shuffle (coordenadas.begin(), coordenadas.end(), default_random_engine(seed));
       linha = coordenadas[0];
-      shuffle (coordenadas.begin(), coordenadas.end(), default_random_engine(rand()));
+      seed = chrono::system_clock::now().time_since_epoch().count();
+      shuffle (coordenadas.begin(), coordenadas.end(), default_random_engine(seed));
       coluna = coordenadas[0];
 
       if (Sudoku[linha][coluna] != 0) {
@@ -116,14 +114,14 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     cout << "\n| Digite D0 para receber uma dica.";
     cout << "\n| Digite S0 para visualizar a solução do sudoku.";
-    cout << "\n| Inserir <coluna (A a I)> <linha (1 a 9) (0 para encerrar)> : ";
-    cin >> valorColuna >> linha;
+    cout << "\n| Inserir <linha (A a I)> <coluna (1 a 9) (0 para encerrar)> : ";
+    cin >> linha >> valorColuna;
 
-    if(valorColuna == 'D' && linha == 0) {
+    if(valorColuna == 'D' && coluna == 0) {
 
       //Caio, gera uma funcao aqui que escolhe uma casa aleatoria vazia e adiciona o numero que encaixa nela.
     }
-    else if (valorColuna == 'S' && linha == 0) {
+    else if (valorColuna == 'S' && coluna == 0) {
 
       function_backTracking(Sudoku,0,0);
       printSudoku(Sudoku);
@@ -194,7 +192,7 @@ cout << "\n";
 			sudoku[linha - 1][coluna] = valor;
 
       if(verificaLinha(sudoku,valor,linha - 1,coluna) && verificaColuna(sudoku,valor,linha - 1,coluna) && verificaSetor(sudoku,valor,linha - 1,coluna)) {
-
+        
       }
       else {
         sudoku[linha - 1] [coluna] = 0;
