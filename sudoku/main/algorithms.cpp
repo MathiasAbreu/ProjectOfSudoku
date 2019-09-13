@@ -161,7 +161,7 @@ int criarSudokuManualmente(int sudoku[9][9]) {
   char valorColuna;
 
 	int linha, coluna, valor;
-	char operacaoInterna = 's';
+	char operacaoInterna;
 
 cout << "\n";
 
