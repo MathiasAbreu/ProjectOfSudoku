@@ -71,9 +71,9 @@ int gerador(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     vector<int> coordenadas = {0,1,2,3,4,5,6,7,8};
     int pecasAremover;
-    if (dificuldade == 1) pecasAremover = 10;
-    else if (dificuldade == 2) pecasAremover = 15;
-    else pecasAremover = 20;
+    if (dificuldade == 1) pecasAremover = 3;
+    else if (dificuldade == 2) pecasAremover = 4;
+    else pecasAremover = 10;
     int linha;
     int coluna;
 
@@ -104,9 +104,9 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
   int valor;
   int pecasApreencher;
 
-  if (dificuldade == 1) pecasApreencher = 10;
-  else if (dificuldade == 2) pecasApreencher = 15;
-  else pecasApreencher = 20;
+  if (dificuldade == 1) pecasApreencher = 3;
+  else if (dificuldade == 2) pecasApreencher = 4;
+  else pecasApreencher = 10;
 
   while (true) { //Loop de preenchimento manual
 
@@ -151,7 +151,7 @@ int jogar(int Sudoku[9][9], int SudokuSol[9][9], int dificuldade) {
 
     else {
 
-      Sudoku[coluna][linha] = valor;
+      Sudoku[linha][coluna] = valor;
       pecasApreencher--;
       if (pecasApreencher == 0) {
         cout << "\nSudoku completo! Parabens!!";
@@ -187,8 +187,8 @@ cout << "\n";
 		cout << "\nDigite o valor (entre 1 e 9): ";
 		cin >> valor;
 
-		if(sudoku[coluna - 1][linha] == 0){
-			sudoku[coluna - 1][linha] = valor;
+		if(sudoku[linha][coluna - 1] == 0){
+			sudoku[linha][coluna - 1] = valor;
 		}else{
 			cout << "\n(A casa ja esta preenchida!!!)\n"<< endl;
 		}
