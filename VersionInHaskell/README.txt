@@ -1,0 +1,1 @@
+O projeto codificado em Haskell deve ser colocado neste diretório.

@@ -1,0 +1,1 @@
+O projeto codificado em Prolog dve ser colocado neste diretório.
